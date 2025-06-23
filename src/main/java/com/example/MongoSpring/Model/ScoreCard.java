@@ -45,5 +45,7 @@ public class ScoreCard
 
     private Integer reserveId;
 
+    private List<Score> score;
+
 
 }

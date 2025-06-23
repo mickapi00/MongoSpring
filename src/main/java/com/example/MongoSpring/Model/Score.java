@@ -7,14 +7,10 @@ import java.util.List;
 public class Score
 
 {
-    private String courseLayoutId;
-
-    private String courseLayoutName;
 
     private String marker ;
 
     private Integer holeNo;
-
 
     private Integer par;
 
