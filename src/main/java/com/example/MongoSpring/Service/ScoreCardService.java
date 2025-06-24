@@ -41,11 +41,8 @@ public class ScoreCardService
         if (card != null) {
             // Add score to the scorecard
             Score newScore = new Score();
-            newScore.setCourseLayoutId("");
-            newScore.setCourseLayoutName("");
+            newScore.setCourseName("");
             newScore.setHoleNo(score.getHoleNo());
-            newScore.setDistance(0);
-            newScore.setMarker("");
             newScore.setPar(0);
             newScore.setHandicap(0);
             newScore.setScore(score.getScore());

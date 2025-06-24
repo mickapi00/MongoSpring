@@ -6,15 +6,10 @@ import lombok.Data;
 public class ScoreInput
 {
 
-    private String courseId;
 
-
-    private String courseLayoutId;
-
+    private Integer holeNo;
 
     private Integer score;
-
-
-    private Integer holeNo; // Hole number for the score
+    // Hole number for the score
 
 }

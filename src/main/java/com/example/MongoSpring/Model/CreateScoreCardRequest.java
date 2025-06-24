@@ -16,6 +16,8 @@ public class CreateScoreCardRequest
 
     private Integer reserveNo;
 
+    private String CourseName;
+
     private String courseLayoutId;
 
     private String courseLayoutName;

@@ -129,21 +129,64 @@ public class MainController {
     // MarkerDetailsController
 
 
+
     @GetMapping("/markersdetails/markers/{markersId}")
-    public List<MarkerDetails> getMarkerDetails(@PathVariable String markersId) {
-        return courseService.getMarkerDetails(markersId);
+    public ResponseEntity<List<MarkerDetails>> getMarkerDetails(@PathVariable String markersId) {
+        List<MarkerDetails> markerDetails = courseService.getMarkerDetails(markersId);
+        if (markerDetails == null || markerDetails.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(markerDetails);
     }
 
     @GetMapping("/markersdetails/markers/{markersId}/{holeNo}")
-            public List<MarkerDetails> getMarkerDetailByHole(
-                    @PathVariable String markersId,
-                    @PathVariable Integer holeNo)
-
-    {
-        return courseService.getMarkerDetailsByHole(markersId, holeNo);
-
+    public ResponseEntity<List<MarkerDetails>> getMarkerDetailByHole(
+            @PathVariable String markersId,
+            @PathVariable Integer holeNo) {
+        List<MarkerDetails> markerDetails = courseService.getMarkerDetailsByHole(markersId, holeNo);
+        if (markerDetails == null || markerDetails.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(markerDetails);
     }
 
+
+//    @PostMapping("/create/{courseId}/{courseName}/{reserveNo}")
+//    public ResponseEntity<ScoreCard> createScoreCard(
+//            @PathVariable String courseId,
+//            @PathVariable String courseName,
+//            @PathVariable String reserveNo,
+//            @RequestParam String userId) {
+//        CreateScoreCardRequest request = new CreateScoreCardRequest();
+//        request.setCourseId(courseId);
+//        request.setCourseName(courseName);
+//        request.setReserveNo(reserveNo);
+//        request.setUserId(userId);
+//
+//        ScoreCard scoreCard = scoreCardService.createScoreCard(request);
+//        return ResponseEntity.ok(scoreCard);
+//    }
+
+//    @GetMapping("/markersdetails/{markers}/{markersId}/{holeNo}")
+//    public ResponseEntity<ScoreCard> mapToBlankScoreCard(
+//            @PathVariable String markersId,
+//            @PathVariable Integer holeNo) {
+//        List<MarkerDetails> markerDetails = courseService.getMarkerDetailsByHole(markersId, holeNo);
+//
+//        if (markerDetails == null || markerDetails.isEmpty()) {
+//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+//        }
+//
+//        // Create a blank ScoreCard and map data
+//        ScoreCard blankScoreCard = new ScoreCard();
+//        blankScoreCard.setScore(List.of()); // Initialize empty scores
+//        blankScoreCard.setTotalScore(0);
+//        blankScoreCard.setTotalIn(0);
+//        blankScoreCard.setTotalOut(0);
+//        blankScoreCard.setMarkersDetails(markerDetails); // Assuming ScoreCard has a field for MarkerDetails
+//
+//        return ResponseEntity.ok(blankScoreCard);
+//    }
 //    // Post Mapping for creating info
 //    @PostMapping("/markers/layouts/{courseLayoutId}")
 //    public ResponseEntity<Marker> addMarkerToLayout(
