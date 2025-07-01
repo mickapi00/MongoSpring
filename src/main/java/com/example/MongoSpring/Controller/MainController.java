@@ -130,25 +130,6 @@ public class MainController {
 
 
 
-    @GetMapping("/markersdetails/markers/{markersId}")
-    public ResponseEntity<List<MarkerDetails>> getMarkerDetails(@PathVariable String markersId) {
-        List<MarkerDetails> markerDetails = courseService.getMarkerDetails(markersId);
-        if (markerDetails == null || markerDetails.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-        }
-        return ResponseEntity.status(HttpStatus.OK).body(markerDetails);
-    }
-
-    @GetMapping("/markersdetails/markers/{markersId}/{holeNo}")
-    public ResponseEntity<List<MarkerDetails>> getMarkerDetailByHole(
-            @PathVariable String markersId,
-            @PathVariable Integer holeNo) {
-        List<MarkerDetails> markerDetails = courseService.getMarkerDetailsByHole(markersId, holeNo);
-        if (markerDetails == null || markerDetails.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-        }
-        return ResponseEntity.status(HttpStatus.OK).body(markerDetails);
-    }
 
 
 //    @PostMapping("/create/{courseId}/{courseName}/{reserveNo}")
@@ -196,6 +177,3 @@ public class MainController {
 //        return ResponseEntity.ok(saved);
 //    }
 }
-
-
-

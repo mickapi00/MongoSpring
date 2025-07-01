@@ -4,7 +4,6 @@ import com.example.MongoSpring.Model.*;
 
 import com.example.MongoSpring.Repository.CourseRepo;
 import com.example.MongoSpring.Repository.CourseLayoutRepo;
-import com.example.MongoSpring.Repository.MarkerDetailsRepo;
 import com.example.MongoSpring.Repository.MarkerRepo;
 import org.springframework.stereotype.Service;
 
@@ -18,14 +17,13 @@ import java.util.*;
         private final CourseRepo courseRepo;
         private final CourseLayoutRepo courseLayoutRepo;
         private final MarkerRepo markerRepo;
-        private final MarkerDetailsRepo markerDetailsRepo;
 
 
-        public CourseService(CourseRepo courseRepo, CourseLayoutRepo courseLayoutRepo, MarkerRepo markerRepo, MarkerDetailsRepo markerDetailsRepo) {
+
+        public CourseService(CourseRepo courseRepo, CourseLayoutRepo courseLayoutRepo, MarkerRepo markerRepo) {
             this.courseRepo = courseRepo;
             this.courseLayoutRepo = courseLayoutRepo;
             this.markerRepo = markerRepo;
-            this.markerDetailsRepo = markerDetailsRepo;
         }
 
 
@@ -67,18 +65,9 @@ import java.util.*;
             return result;
         }
 
-        public List<MarkerDetails> getMarkerDetails(String markersId) {
-            return markerDetailsRepo.findByMarkersId(markersId);
-        }
 
-        public List<MarkerDetails> getMarkerDetailsByHole(String markersId, Integer holeNo) {
-            return markerDetailsRepo.findByMarkersIdAndHoleNo(markersId, holeNo);
-        }
-
-        public Marker addMarkerToLayout(String courseLayoutId, Marker marker) {
-            marker.setCourseLayoutId(courseLayoutId);
+        public Marker addMarkerToLayout(String courseLayoutId, Marker marker) {marker.setCourseLayoutId(courseLayoutId);
             return markerRepo.save(marker);
-        }
 
-    }
+        }}
 

@@ -18,15 +18,14 @@ public class ScoreCardService
         this.repository = repository;
     }
 
-    public ScoreCard createScoreCard (CreateScoreCardRequest request)
+    public ScoreCard createScoreCard (CreateScoreCardRequest request )
     {
         // Convert CreateScoreCardRequest to ScoreCard
         ScoreCard scoreCard = new ScoreCard();
-        scoreCard.setUserId(request.getUserId()); // มันเอามา getUser ID เพราะมี User ID อยู่ใน CreateScoreCardRequest
-        scoreCard.setUserName("Mickey Mouse"); // Assuming a static name for simplicity
+        scoreCard.setUserId(request.getUserId()); // มันเอามา getUser ID เพราะมี User ID อยู่ใน CreateScoreCardRequest// Assuming a static name for simplicity
         scoreCard.setTeeOffDate(LocalDate.now());
         scoreCard.setCourseId(request.getCourseId());// courseId from request createScoreCardRequest
-        scoreCard.setCourseName("Golf digg");
+        scoreCard.setCourseName(request.getCourseName());
         scoreCard.setTotalScore(0);
         scoreCard.setTotalIn(0);
         scoreCard.setTotalOut(0);
@@ -94,7 +93,30 @@ public class ScoreCardService
 
     }
 
+    public ScoreSummary getScoreSummary(String scoreCardId) {
+        ScoreCard card = repository.findById(scoreCardId).orElseThrow(() ->
+                new NoSuchElementException("ScoreCard not found"));
 
+        int totalScore = 0;
+        int totalIn = 0;
+        int totalOut = 0;
+
+        for (Score score : card.getScore()) {
+            totalScore += score.getScore();
+            if (score.getHoleNo() >= 1 && score.getHoleNo() <= 9) {
+                totalIn += score.getScore();
+            } else if (score.getHoleNo() >= 10 && score.getHoleNo() <= 18) {
+                totalOut += score.getScore();
+            }
+        }
+
+        ScoreSummary summary = new ScoreSummary();
+        summary.setTotalScore(totalScore);
+        summary.setTotalIn(totalIn);
+        summary.setTotalOut(totalOut);
+
+        return summary;
+    }
 
 }
 //
