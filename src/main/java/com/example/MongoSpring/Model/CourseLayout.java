@@ -17,6 +17,8 @@ public class CourseLayout
 
     private String _id;
 
+    private String courseName;
+
     private String courseId;
 
     private String courselayout;

@@ -23,11 +23,7 @@ public class Marker {
 
     private String color;
 
-    private String colorcode;
-
-    private Integer inPar;
-
-    private Integer outPar;
+    private String colorCode;
 
     private Integer totalPar;
 

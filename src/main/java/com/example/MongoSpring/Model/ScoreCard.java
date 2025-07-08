@@ -30,6 +30,10 @@ public class ScoreCard
 
     private String courseName; // ดึงมาได้จาก state
 
+    private String courseLayoutId;
+
+    private String makersId;
+
     private Integer totalScore;   // frontend manage เเล้ว map มา
 
     private Integer totalIn; // frontend manage
@@ -47,8 +51,6 @@ public class ScoreCard
     private Integer reserveId;
 
     private List<Score> score; // frontend manage
-
-
 
 
 }

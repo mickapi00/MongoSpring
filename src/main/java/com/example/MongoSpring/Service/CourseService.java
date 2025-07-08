@@ -1,14 +1,19 @@
 package com.example.MongoSpring.Service;
 
-import com.example.MongoSpring.Model.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
-import com.example.MongoSpring.Repository.CourseRepo;
-import com.example.MongoSpring.Repository.CourseLayoutRepo;
-import com.example.MongoSpring.Repository.MarkerRepo;
 import org.springframework.stereotype.Service;
 
-
-import java.util.*;
+import com.example.MongoSpring.Model.Course;
+import com.example.MongoSpring.Model.CourseLayout;
+import com.example.MongoSpring.Model.Marker;
+import com.example.MongoSpring.Repository.CourseLayoutRepo;
+import com.example.MongoSpring.Repository.CourseRepo;
+import com.example.MongoSpring.Repository.MarkerRepo;
 
 
     @Service
@@ -49,21 +54,23 @@ import java.util.*;
 
         }
 
-
         public Map<String, Object> getCourseWithCourseLayoutId(String courseId) {
-            Optional<Course> courseOpt = courseRepo.findByCourseId(courseId);
-            if (!courseOpt.isPresent()) {
-                throw new RuntimeException("Course not found");
-            }
-            Course course = courseOpt.get();
+        Optional<Course> courseOpt = courseRepo.findByCourseId(courseId);
 
-            List<CourseLayout> layouts = courseLayoutRepo.findByCourseId(course.getCourseId());
-
-            Map<String, Object> result = new HashMap<>();
-            result.put("course", course);
-            result.put("layouts", layouts);
-            return result;
+        if (courseOpt.isEmpty()) {
+        throw new NoSuchElementException("Course not found with ID: " + courseId);
         }
+
+        Course course = courseOpt.get();
+
+        List<CourseLayout> layouts = courseLayoutRepo.findByCourseId(course.getCourseId());
+
+        Map<String, Object> result = new HashMap<>();
+        result.put("course", course);
+        result.put("layouts", layouts);
+        return result;
+}
+
 
 
         public Marker addMarkerToLayout(String courseLayoutId, Marker marker) {marker.setCourseLayoutId(courseLayoutId);
