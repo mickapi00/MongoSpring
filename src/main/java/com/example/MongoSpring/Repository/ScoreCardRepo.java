@@ -8,7 +8,5 @@ import java.util.List;
 public interface ScoreCardRepo extends MongoRepository<ScoreCard, String>
 {
 
-    List<ScoreCard> findByUserId(String userId); // Query
-    List<ScoreCard> findByCourseId(String courseId);
-    List<ScoreCard> findByCourseIdAndUserId(String courseId, String userId); // Query to find ScoreCards by courseId and userId
+
 }

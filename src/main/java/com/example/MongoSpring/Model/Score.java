@@ -8,17 +8,9 @@ public class Score
 
 {
 
-    private String courseName;
-
-    private String markerid;
-
     private Integer holeNo;
 
     private Integer score;
-
-    private Integer par;
-
-    private Integer handicap;
 
 
 

@@ -54,6 +54,11 @@ import com.example.MongoSpring.Repository.MarkerRepo;
 
         }
 
+        public List<Marker> getMarkersByMarkersId(String markersId) {
+
+            return markerRepo.findByMarkersId(markersId);
+        }
+
         public Map<String, Object> getCourseWithCourseLayoutId(String courseId) {
         Optional<Course> courseOpt = courseRepo.findByCourseId(courseId);
 

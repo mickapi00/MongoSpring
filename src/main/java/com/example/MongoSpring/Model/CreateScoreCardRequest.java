@@ -10,17 +10,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class CreateScoreCardRequest
 
 {
-    private String courseId;
 
-    private String userId;
-
-    private Integer reserveNo;
 
     private String courseName;
-
-    private String courseLayoutId;
-
-    private String courseLayoutName;
 
     private String markerId;
 

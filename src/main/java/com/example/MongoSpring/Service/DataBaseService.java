@@ -53,13 +53,6 @@ public class DataBaseService
     }
 
 
-    public Marker getMarkerBymarkersId(String markersId) {
-        List<Marker> markers = markerRepository.findByMarkersId(markersId);
-        if (markers.isEmpty()) {
-            throw new NoSuchElementException("Marker not found");
-        }
-        return markers.get(0);
-    }
 
     public void deleteMarker(String id) {
         markerRepository.deleteById(id);

@@ -1,6 +1,7 @@
 package com.example.MongoSpring.Controller;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -42,12 +43,6 @@ public class DatabaseController {
         return ResponseEntity.ok(updatedMarker);
     }
 
-    @GetMapping("/markers/{id}")
-    public ResponseEntity<Marker> getMarkerByMarkersId
-            (@PathVariable String id) {
-        Marker marker = dataBaseService.getMarkerBymarkersId(id);
-        return ResponseEntity.ok(marker);
-    }
 
     @DeleteMapping("/markers/{id}")
     public ResponseEntity<Void> deleteMarker
