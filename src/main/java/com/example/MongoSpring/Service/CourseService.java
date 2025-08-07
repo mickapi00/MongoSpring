@@ -1,10 +1,6 @@
 package com.example.MongoSpring.Service;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.NoSuchElementException;
-import java.util.Optional;
+import java.util.*;
 
 import org.springframework.stereotype.Service;
 
@@ -54,6 +50,22 @@ import com.example.MongoSpring.Repository.MarkerRepo;
 
         }
 
+        public List<Marker> getMarkersByPair(String markerFront, String markerBack) {
+            List<String> markerIds = new ArrayList<>();
+
+            if (markerFront != null && !markerFront.isEmpty()) {
+                markerIds.add(markerFront);
+            }
+            if (markerBack != null && !markerBack.isEmpty()) {
+                markerIds.add(markerBack);
+            }
+
+            if (markerIds.isEmpty()) {
+                return new ArrayList<>(); // return empty list
+            }
+
+            return markerRepo.findByMarkersIdIn(markerIds);
+        }
         public List<Marker> getMarkersByMarkersId(String markersId) {
 
             return markerRepo.findByMarkersId(markersId);

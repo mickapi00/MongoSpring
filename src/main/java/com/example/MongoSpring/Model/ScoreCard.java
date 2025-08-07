@@ -20,7 +20,11 @@ public class ScoreCard
 
     private String _id;
 
-    private LocalDate teeOffDate;
+    private String teeOffDate;
+
+    private String frontmarkersId;
+
+    private String backmarkersId;
 
     private String courseName; // ดึงมาได้จาก state
 

@@ -15,7 +15,7 @@ public interface MarkerRepo extends MongoRepository<Marker,String> {
     List<Marker> findByMarkersId(String markerId);
 
 
-
+    List<Marker> findByMarkersIdIn(List<String> markerIds);
 }
 
 

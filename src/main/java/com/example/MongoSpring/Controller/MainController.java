@@ -37,52 +37,6 @@ public class MainController {
         return ResponseEntity.ok(created);
     }
 
-//    @PostMapping("/{id}/scores")
-//    public ResponseEntity<ScoreCard> addScore(
-//            @PathVariable String id,
-//            @RequestBody ScoreInput inputs
-//    ) {
-//        // Add score to scorecard
-//        ScoreCard updated = scoreCardService.addScore(id, inputs);
-//        return ResponseEntity.ok(updated);
-//    }
-//
-//    @PutMapping("/{id}/scores/{hole}")
-//    public ResponseEntity<ScoreCard> editScore
-//            (
-//                    @PathVariable String id,
-//                    @PathVariable int hole,
-//                    @RequestBody ScoreUpdateInput input// ข้อมูลที่ Edit
-//            ) {
-//        // Edit score for given hole
-//        ScoreCard updatedScorecard = scoreCardService.editScore(id, hole, input);
-//        return ResponseEntity.ok(updatedScorecard);
-//    }
-//
-//    @DeleteMapping("/{id}/scores/{hole}")
-//    public ResponseEntity<ScoreCard> deleteScore(
-//            @PathVariable String id,
-//            @PathVariable int hole) {
-//        // Delete score for given hole
-//        ScoreCard updatedScorecard = scoreCardService.deleteScore(id, hole);
-//        return ResponseEntity.ok(updatedScorecard);
-//    }
-
-
-//    @GetMapping("/{id}")
-//    public ResponseEntity<ScoreCard> getScoreCardById(
-//            @PathVariable String id) {        // Retrieve scorecard by ID
-//        ScoreCard scoreCard = scoreCardService.getScoreCardById(id);
-//        return ResponseEntity.ok(scoreCard);
-//    }
-//
-//    @GetMapping("/user/{userId}")
-//    public ResponseEntity<ScoreCard> getScoreCardByUserId(
-//            @PathVariable String userId) {
-//        // Retrieve scorecards by user ID
-//        return ResponseEntity.ok(scoreCardService.getScoreCardsByUserId(userId));
-//    }
-
 
     // Retrieve markers by course layout ID
 
@@ -113,25 +67,14 @@ public class MainController {
         }
         return ResponseEntity.ok(markers);
     }
-    @GetMapping("/markers/markerId/{markerId}")
-    public ResponseEntity<List<Marker>> getMarkerByMarkersId(@PathVariable String markerId) {
-        List<Marker> markers = courseService.getMarkersByMarkersId(markerId);
-        if (markers == null || markers.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-            }
+    @GetMapping("/markers/pair")
+    public ResponseEntity<List<Marker>> getMarkersByPair(
+            @RequestParam(required = false) String markerFront,
+            @RequestParam(required = false) String markerBack
+    ) {
+        List<Marker> markers = courseService.getMarkersByPair(markerFront, markerBack);
         return ResponseEntity.ok(markers);
-        }
+    }
 
 }
-//
-//    @GetMapping("/{id}/summary")
-//    public ResponseEntity<ScoreSummary> getScoreSummary(@PathVariable String id) {
-//        try {
-//            ScoreSummary summary = scoreCardService.getScoreSummary(id);
-//            return ResponseEntity.ok(summary);
-//        } catch (NoSuchElementException e) {
-//            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-//        }
-//
-//    }
 
